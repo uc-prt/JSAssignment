@@ -1,7 +1,7 @@
 const cvs = document.getElementById("tetris");
 const ctx = cvs.getContext("2d");
 let score = document.getElementById("score");
-let sc = 0;
+let score_inc = 0;
 const Z = [[[1, 1]]];
 const ROW = 10;
 const COL = (COLUMN = 3);
@@ -34,15 +34,15 @@ function drawBoard() {
 }
 drawBoard();
 function decrement() {
-  t1.value = t1.value - 1;
-  if (t1.value <= 1) {
-    t1.value = 1;
+  level.value = level.value - 1;
+  if (level.value <= 1) {
+    level.value = 1;
   }
 }
 function increment() {
-  t1.value++;
-  if (t1.value >= 4) {
-    t1.value = 4;
+  level.value++;
+  if (level.value >= 4) {
+    level.value = 4;
   }
 }
 // the pieces and their colors
@@ -57,7 +57,7 @@ function randomPiece() {
   let r = (randomN = Math.floor(Math.random() * PIECES.length)); // 0 -> 6
   return new Piece(PIECES[r][0], PIECES[r][1]);
 }
-let p = randomPiece();
+let pieceshift = randomPiece();
 // The Object Piece
 function Piece(tetromino, color) {
   this.tetromino = tetromino;
@@ -96,7 +96,7 @@ Piece.prototype.moveDown = function () {
   } else {
     // we lock the piece and generate a new one
     this.lock();
-    p = randomPiece();
+    pieceshift = randomPiece();
     for (i = 9; i >= 0; i--) {
       let c = 0;
       if (
@@ -107,8 +107,8 @@ Piece.prototype.moveDown = function () {
         delete board[i][c];
         delete board[i][c + 1];
         delete board[i][c + 2];
-        sc += 10;
-        score.value = sc;
+        score_inc += 10;
+        score.value = score_inc;
         board.splice(i, 1);
         board.unshift([VACANT, VACANT, VACANT]);
         drawBoard();
@@ -128,8 +128,8 @@ Piece.prototype.moveDown = function () {
       board[i][co] = board[i - 3][co];
       board[i - 1][co] = board[i - 4][co];
       board[i - 2][co] = board[i - 5][co];
-      sc += 10;
-      score.value = sc;
+      score_inc += 10;
+      score.value = score_inc;
       drawBoard();
     }
   }
@@ -146,8 +146,8 @@ Piece.prototype.moveDown = function () {
       board[j][co] = board[j - 3][co];
       board[j - 1][co] = board[j - 4][co];
       board[j - 2][co] = board[j - 5][co];
-      sc += 10;
-      score.value = sc;
+      score_inc += 10;
+      score.value = score_inc;
       drawBoard();
     }
   }
@@ -164,8 +164,8 @@ Piece.prototype.moveDown = function () {
       board[k][co] = board[k - 3][co];
       board[k - 1][co] = board[k - 4][co];
       board[k - 2][co] = board[k - 5][co];
-      sc += 10;
-      score.value = sc;
+      score_inc += 10;
+      score.value = score_inc;
       drawBoard();
     }
   }
@@ -182,8 +182,8 @@ Piece.prototype.moveDown = function () {
       board[l][co] = board[l - 3][co];
       board[l - 1][co] = board[l - 4][co];
       board[l - 2][co] = board[l - 5][co];
-      sc += 10;
-      score.value = sc;
+      score_inc += 10;
+      score.value = score_inc;
       drawBoard();
     }
   }
@@ -200,8 +200,8 @@ Piece.prototype.moveDown = function () {
       board[m][co] = board[m - 3][co];
       board[m - 1][co] = board[m - 4][co];
       board[m - 2][co] = board[m - 5][co];
-      sc += 10;
-      score.value = sc;
+      score_inc += 10;
+      score.value = score_inc;
       drawBoard();
     }
   }
@@ -218,8 +218,8 @@ Piece.prototype.moveDown = function () {
       board[n][co] = board[n - 3][co];
       board[n - 1][co] = "WHITE";
       board[n - 2][co] = "WHITE";
-      sc += 10;
-      score.value = sc;
+      score_inc += 10;
+      score.value = score_inc;
       drawBoard();
     }
   }
@@ -236,8 +236,8 @@ Piece.prototype.moveDown = function () {
       board[o][co] = "WHITE";
       board[o - 1][co] = "WHITE";
       board[o - 2][co] = "WHITE";
-      sc += 10;
-      score.value = sc;
+      score_inc += 10;
+      score.value = score_inc;
       drawBoard();
     }
   }
@@ -254,8 +254,8 @@ Piece.prototype.moveDown = function () {
       board[r][co] = "WHITE";
       board[r - 1][co] = "WHITE";
       board[r - 2][co] = "WHITE";
-      sc += 10;
-      score.value = sc;
+      score_inc += 10;
+      score.value = score_inc;
       drawBoard();
     }
   }
@@ -326,13 +326,13 @@ Piece.prototype.collision = function (x, y, piece) {
 document.addEventListener("keydown", CONTROL);
 function CONTROL(event) {
   if (event.keyCode == 37) {
-    p.moveLeft();
+    pieceshift.moveLeft();
     dropStart = Date.now();
   } else if (event.keyCode == 39) {
-    p.moveRight();
+    pieceshift.moveRight();
     dropStart = Date.now();
   } else if (event.keyCode == 40) {
-    p.moveDown();
+    pieceshift.moveDown();
   }
 }
 // drop the piece every 1sec
@@ -342,13 +342,13 @@ function drop() {
   let now = Date.now();
   let delta = now - dropStart;
   if (delta > 1000) {
-    p.moveDown();
+    pieceshift.moveDown();
     dropStart = Date.now() + 7000;
-    if (t1.value == 2) {
+    if (level.value == 2) {
       dropStart = Date.now() + 1000;
-    } else if (t1.value == 3) {
+    } else if (level.value == 3) {
       dropStart = Date.now() - 300;
-    } else if (t1.value == 4) {
+    } else if (level.value == 4) {
       dropStart = Date.now() - 550;
     }
   }
@@ -359,15 +359,15 @@ function drop() {
 drop();
 // For suggested buttons
 function leftmove() {
-  p.moveLeft();
+  pieceshift.moveLeft();
   dropStart = Date.now();
 }
 function rightmove() {
-  p.moveRight();
+  pieceshift.moveRight();
   dropStart = Date.now();
 }
 function downmove() {
-  p.moveDown();
+  pieceshift.moveDown();
 }
 
 // -----------------  End  Here ------------------------------ //
