@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
   <head>
     <link rel="stylesheet" href="style.css" />
@@ -5,22 +6,31 @@
   </head>
   <body>
     <div class="container">
-      <p><span class="spanup">Level</span><span class="spanup">Score</span></p>
-      <button class="btn" onclick="decrement()">&minus;</button>
+      <p>
+        <span class="span_up">Level</span>
+        <span class="span_up">Score</span>
+      </p>
+      <button type="button" class="btn_only" onclick="decrement()">
+        &minus;
+      </button>
       <input type="number" value="1" id="level" name="level" disabled />
-      <button class="btn" onclick="increment()">&plus;</button>
+      <button type="button" class="btn_only" onclick="increment()">
+        &plus;
+      </button>
       <input
         type="number"
         id="score"
         value="0"
+        min="1"
+        max="4"
         onchange="chages()"
         name="score"
-        disabled
+        disabled="disabled"
       />
       <canvas id="tetris" width="150" height="500"></canvas>
-      <button class="btns" onclick="leftmove()">&larr;</button>
-      <button class="btns" onclick="downmove()">&darr;</button>
-      <button class="btns" onclick="rightmove()">&rarr;</button>
+      <button type="button" class="btn_all" onclick="leftmove()">&larr;</button>
+      <button type="button" class="btn_all" onclick="downmove()">&darr;</button>
+      <button type="button" class="btn_all" onclick="rightmove()">&rarr;</button>
     </div>
     <script src="tetris.js"></script>
   </body>
