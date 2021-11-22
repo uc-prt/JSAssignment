@@ -343,13 +343,13 @@ function drop() {
   let delta = now - dropStart;
   if (delta > 1000) {
     pieceShift.moveDown();
-    dropStart = Date.now() + 1000;
+    dropStart = Date.now() + 700;
     if (level.value == 2) {
       dropStart = Date.now() + 300;
     } else if (level.value == 3) {
       dropStart = Date.now() - 300;
     } else if (level.value == 4) {
-      dropStart = Date.now() - 550;
+      dropStart = Date.now() - 600;
     }
   }
   if (!gameOver) {
