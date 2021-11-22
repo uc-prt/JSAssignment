@@ -5,10 +5,10 @@
   </head>
   <body>
     <div class="container">
-      <p><span>Level</span><span>Score</span></p>
-      <button class="btn" onclick="decrement()">-</button>
-      <input type="number" value="1" id="t1" name="t1" disabled />
-      <button class="btn" onclick="increment()">+</button>
+      <p><span class="spanup">Level</span><span class="spanup">Score</span></p>
+      <button class="btn" onclick="decrement()">&minus;</button>
+      <input type="number" value="1" id="level" name="level" disabled />
+      <button class="btn" onclick="increment()">&plus;</button>
       <input
         type="number"
         id="score"
@@ -18,11 +18,10 @@
         disabled
       />
       <canvas id="tetris" width="150" height="500"></canvas>
-      <button class="btns" onclick="leftmove()"><<</button>
-      <button class="btns" onclick="downmove()">V</button>
-      <button class="btns" onclick="rightmove()">>></button>
+      <button class="btns" onclick="leftmove()">&larr;</button>
+      <button class="btns" onclick="downmove()">&darr;</button>
+      <button class="btns" onclick="rightmove()">&rarr;</button>
     </div>
-    <div></div>
     <script src="tetris.js"></script>
   </body>
 </html>
