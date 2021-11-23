@@ -20,7 +20,7 @@ function drawCircle(x, y, color) {
     ctx.strokeStyle = "white";
     ctx.stroke();
 }
-// create the board
+// board creation
 let board = [];
 for (r = 0; r < ROW; r++) {
     board[r] = [];
@@ -28,7 +28,7 @@ for (r = 0; r < ROW; r++) {
         board[r][c] = VACANT;
     }
 }
-// draw the board
+// Here Board is draw for contain ball 
 function drawBoard() {
     for (r = 0; r < ROW; r++) {
         for (c = 0; c < COL; c++) {
@@ -51,7 +51,7 @@ function increment() {
         level.value = 4;
     }
 }
-// the pieces and their colors
+// Pieces and  colors
 const PIECES = [
     [Z, "red"],
     [Z, "green"],
@@ -74,7 +74,7 @@ function Piece(tetromino, color) {
     this.x = 1;
     this.y = -1;
 }
-// fill function
+// Here ball are  filling by color
 Piece.prototype.fill = function(color) {
     for (r = 0; r < this.activeTetromino.length; r++) {
         for (c = 0; c < this.activeTetromino.length; c++) {
@@ -85,22 +85,21 @@ Piece.prototype.fill = function(color) {
         }
     }
 };
-// draw a piece to the board
+// Here Pieces are Draw
 Piece.prototype.draw = function() {
     this.fill(this.color);
 };
-// undraw a piece
+//remove vertical/horizontal piece
 Piece.prototype.unDraw = function() {
     this.fill(VACANT);
 };
-// move Down the piece
+// movement in the piece
 Piece.prototype.moveDown = function() {
     if (!this.collision(0, 1, this.activeTetromino)) {
         this.unDraw();
         this.y++;
         this.draw();
     } else {
-        // we lock the piece and generate a new one
         this.lock();
         pieceShift = randomPiece();
         for (i = 9; i >= 0; i--) {
@@ -266,7 +265,7 @@ Piece.prototype.moveDown = function() {
         }
     }
 };
-// move Right the piece
+//  Right movement the piece
 Piece.prototype.moveRight = function() {
     if (!this.collision(1, 0, this.activeTetromino)) {
         this.unDraw();
@@ -274,7 +273,7 @@ Piece.prototype.moveRight = function() {
         this.draw();
     }
 };
-// move Left the piece
+//  Left movement the piece
 Piece.prototype.moveLeft = function() {
     if (!this.collision(-1, 0, this.activeTetromino)) {
         this.unDraw();
@@ -289,19 +288,16 @@ Piece.prototype.lock = function() {
             if (!this.activeTetromino[r][c]) {
                 continue;
             }
-            // pieces to lock on top = game over
             if (this.y + r < 0) {
                 alert("Game Over");
-                // stop request animation frame
                 gameOver = true;
                 break;
             }
-            // we lock the piece
             board[this.y + r][this.x + c] = this.color;
         }
     }
 };
-// collision fucntion
+// collide detect
 Piece.prototype.collision = function(x, y, piece) {
     for (r = 0; r < piece.length; r++) {
         for (c = 0; c < piece.length; c++) {
@@ -328,7 +324,7 @@ Piece.prototype.collision = function(x, y, piece) {
     }
     return false;
 };
-// CONTROL the piece
+// CONTROL the movement of piece
 document.addEventListener("keydown", CONTROL);
 
 function CONTROL(event) {
