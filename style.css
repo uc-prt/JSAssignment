@@ -1,44 +1,40 @@
 * {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
-  margin: auto;
-  width: 150px;
-  background-color: rgb(142, 210, 231);
-  padding: 20px 50px;
-  font-size: 25px;
-  font-weight: bold;
-  font-family: monospace;
-  text-align: center;
-}
-
-#score {
-  display: inline-block;
+    margin: auto;
+    width: 150px;
+    background-color: rgb(142, 210, 231);
+    padding: 20px 50px;
+    font-size: 25px;
+    font-weight: bold;
+    font-family: monospace;
+    text-align: center;
 }
 
 .span_up {
-  font-size: 16px;
-  margin-left: 20px;
+    font-size: 16px;
+    margin-left: 20px;
 }
 
 input[type="number"] {
-  width: 30px;
+    width: 30px;
 }
 
 .btn_only {
-  width: 14px;
-  cursor: pointer;
+    width: 14px;
+    cursor: pointer;
 }
 
 .btn_all {
-  cursor: pointer;
-  width: 35px;
-  font-size: 15px;
-  font-weight: bold;
+    cursor: pointer;
+    width: 35px;
+    font-size: 15px;
+    font-weight: bold;
 }
 
-#tetris {
-  background-color: #fff;
+.tetris {
+    background-color: #fff;
 }
