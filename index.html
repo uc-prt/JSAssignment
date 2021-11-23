@@ -15,9 +15,9 @@
             <button type="button" id="btn_only" class="btn_only" onclick="increment()">&plus;</button>
             <input type="number" id="score" value="0" min="1" max="4" onchange="chages()" name="score" disabled="disabled" />
             <canvas id="tetris" class="tetris" width="150" height="500"></canvas>
-            <button type="button" id="btn_all" class="btn_all" onclick="leftmove()">&larr;</button>
-            <button type="button" id="btn_all" class="btn_all" onclick="downmove()">&darr;</button>
-            <button type="button" id="btn_all" class="btn_all" onclick="rightmove()">&rarr;</button>
+            <button type="button" id="btn_fst" class="btn_fst btn_all" onclick="leftmove()">&larr;</button> 
+            <button type="button" id="btn_sec" class="btn_fst btn_all" onclick="downmove()">&darr;</button>
+            <button type="button" id="btn_thr" class="btn_fst btn_all" onclick="rightmove()">&rarr;</button>
         </div>
         <script src="tetris.js"></script>
     </body>
